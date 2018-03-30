@@ -22,6 +22,10 @@ else
     if [ $SONAR_ANALYSIS_MODE="preview" ]; then
       COMMAND="$COMMAND -Dsonar.issuesReport.console.enable=true"
     fi
-  fi
+  fi  
+  if [ $CI_DEBUG_TRACE = "true" ]; then
+    echo "COMMAND: \"$COMMAND\""
+    COMMAND="$COMMAND --debug"
+  fi  
   eval $COMMAND
 fi
