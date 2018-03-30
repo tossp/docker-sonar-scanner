@@ -26,7 +26,11 @@ else
     if [ $SONAR_ANALYSIS_MODE="preview" ]; then
       COMMAND="$COMMAND -Dsonar.issuesReport.console.enable=true"
     fi
-  fi  
+  fi
+  for args in $@
+  do
+    COMMAND="$COMMAND $args"
+  done
   if [ $CI_DEBUG_TRACE = "true" ]; then
     echo "COMMAND: \"$COMMAND\""
     COMMAND="$COMMAND --debug"
