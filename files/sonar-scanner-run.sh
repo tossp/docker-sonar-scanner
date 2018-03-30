@@ -7,7 +7,11 @@ elif [ -z "$TS_SONAR_URL" ]; then
 elif [ -z "$TS_SONAR_USER" ]; then
   echo "Undefined \"USER\"" && exit 1
 else
-  COMMAND="sonar-scanner -Dsonar.host.url=\"$TS_SONAR_URL\" -Dsonar.login=\"$TS_SONAR_USER\" -Dsonar.password=\"$TS_SONAR_PASSWORD\" -Dsonar.projectKey=\"$SONAR_PROJECT_KEY\""  
+  COMMAND="sonar-scanner -Dsonar.host.url=\"$TS_SONAR_URL\" -Dsonar.login=\"$TS_SONAR_USER\" -Dsonar.projectKey=\"$SONAR_PROJECT_KEY\""  
+  
+  if [ ! -z $TS_SONAR_PASSWORD ]; then
+    COMMAND="$COMMAND -Dsonar.password=\"$TS_SONAR_PASSWORD\""
+  fi
   if [ ! -z $CI_PROJECT_ID ]; then
     COMMAND="$COMMAND -Dsonar.gitlab.project_id=\"$CI_PROJECT_ID\""
   fi
