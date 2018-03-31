@@ -6,7 +6,7 @@ RUN apk add --no-cache wget && \
     unzip sonar-scanner-cli-${SONAR_SCANNER_VERSION} && \  
     cd /usr/bin && ln -s /sonar-scanner-${SONAR_SCANNER_VERSION}/bin/sonar-scanner sonar-scanner
 	
-RUN apk add --no-cache nodejs && \  
+RUN apk add --no-cache nodejs git && \  
 	npm i -g npm
 	
 COPY files/sonar-scanner-run.sh /usr/bin
